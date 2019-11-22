@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.apps.cms.dao.extend.ArticleExtendMapper">
+
+  <select id="selectAll" resultMap="ArticleWithAuthorAndCategoryResultMap">
+    SELECT * FROM cms_article
+  </select>
+  <select id="selectById" resultMap="ArticleExtendResultMap">
+    SELECT * FROM cms_article
+    WHERE ID=#{id,jdbcType=BIGINT}
+  </select>
+  <resultMap id="ArticleExtendResultMap"
+             type="com.briup.apps.cms.bean.extend.ArticleExtend"
+             extends="com.briup.apps.cms.dao.ArticleMapper.BaseResultMap">
+
+    <collection property="comments" ofType="com.briup.apps.cms.bean.Comment"
+                column="id"
+                select="com.briup.apps.cms.dao.extend.CommentExtendMapper.selectByArticleId"/>
+  </resultMap>
+
+
+  <resultMap id="ArticleWithAuthorAndCategoryResultMap"
+             type="com.briup.apps.cms.bean.extend.ArticleExtend"
+             extends="com.briup.apps.cms.dao.ArticleMapper.BaseResultMap">
+      <association property="category" javaType="com.briup.apps.cms.bean.Category"
+                   column="category_id"
+                   select="com.briup.apps.cms.dao.CategoryMapper.selectByPrimaryKey"/>
+      <association property="author" javaType="com.briup.apps.cms.bean.User"
+                   column="author_id"
+                   select="com.briup.apps.cms.dao.UserMapper.selectByPrimaryKey"/>
+  </resultMap>
+
+</mapper>
