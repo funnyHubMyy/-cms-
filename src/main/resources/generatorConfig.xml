@@ -24,7 +24,7 @@
     </javaTypeResolver>
 
 	<!--自动生成的实体的存放包路径 -->
-    <javaModelGenerator targetPackage="com.briup.apps.cms.bean" targetProject="./src/main/java">
+    <javaModelGenerator targetPackage="com.myy.apps.cms.bean" targetProject="./src/main/java">
       <property name="enableSubPackages" value="true" />
       <property name="trimStrings" value="true" />
     </javaModelGenerator>
@@ -35,7 +35,7 @@
     </sqlMapGenerator>
 
 	<!--自动生成的*Mapper.java存放路径 -->
-    <javaClientGenerator type="XMLMAPPER" targetPackage="com.briup.apps.cms.dao"  targetProject="./src/main/java">
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.myy.apps.cms.dao" targetProject="./src/main/java">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
 

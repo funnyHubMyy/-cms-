@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.briup.apps.cms.dao.extend.RoleExtendMapper">
-  <select id="selectByUserId" resultType="com.briup.apps.cms.bean.Role">
+<mapper namespace="com.myy.apps.cms.dao.extend.RoleExtendMapper">
+  <select id="selectByUserId" resultType="com.myy.apps.cms.bean.Role">
     SELECT r.*
     FROM cms_role r, cms_user_role ur
     WHERE r.id = ur.role_id
@@ -15,10 +15,10 @@
 
 
   <resultMap id="RoleExtendResultMap"
-             type="com.briup.apps.cms.bean.extend.RoleExtend"
-             extends="com.briup.apps.cms.dao.RoleMapper.BaseResultMap">
-    <collection property="privileges" ofType="com.briup.apps.cms.bean.Privilege"
+             type="com.myy.apps.cms.bean.extend.RoleExtend"
+             extends="com.myy.apps.cms.dao.RoleMapper.BaseResultMap">
+    <collection property="privileges" ofType="com.myy.apps.cms.bean.Privilege"
                 column="id"
-                select="com.briup.apps.cms.dao.extend.PrivilegeExtendMapper.selectByRoleId"/>
+                select="com.myy.apps.cms.dao.extend.PrivilegeExtendMapper.selectByRoleId"/>
   </resultMap>
 </mapper>
