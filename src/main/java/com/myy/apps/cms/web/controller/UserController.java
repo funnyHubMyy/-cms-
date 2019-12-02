@@ -7,8 +7,10 @@ import com.myy.apps.cms.utils.JwtTokenUtil;
 import com.myy.apps.cms.utils.Message;
 import com.myy.apps.cms.utils.MessageUtils;
 import com.myy.apps.cms.vm.UserVm;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +18,7 @@ import java.util.*;
 
 @Validated
 @RestController
+@Api(value = "登录、注册模块")
 @RequestMapping("/user")
 @CrossOrigin(origins = "http://localhost:9527",
         methods = {RequestMethod.GET,RequestMethod.POST},

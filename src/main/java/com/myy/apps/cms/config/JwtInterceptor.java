@@ -49,7 +49,6 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
     private boolean auth(long id,String path){
         List<Privilege> privileges = privilegeService.findByUserId(id);
         for(Privilege p : privileges){
-            System.out.println(p);
             if (path.matches(p.getRoute())) {
                 return true;
             }

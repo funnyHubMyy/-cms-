@@ -11,11 +11,15 @@ import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
+import java.util.Arrays;
 import java.util.Date;
 
 
@@ -27,8 +31,9 @@ import java.util.Date;
  * Version: v1.0
  * ========================
  */
-@Component
+
 public class JwtTokenUtil {
+
 
     private static Logger log = LoggerFactory.getLogger(JwtTokenUtil.class);
 
@@ -37,14 +42,10 @@ public class JwtTokenUtil {
     public static final String TOKEN_PREFIX = "Bearer ";
 
     // jwt配置信息
-    @Value(value = "${audience.base64Secret}")
-    public static String base64Secret;
-    @Value(value = "${audience.clientId}")
-    private static String clientId;
-    @Value(value = "${audience.name}")
-    private static String name;
-    @Value(value = "${audience.expiresSecond}")
-    private static int expiresSecond;
+    public final static String base64Secret = "MDk4ZjZiY2Q0NjIxZDM3M2NhZGU0ZTgzMjYyN2I0ZjY=";
+    private final static String clientId = "098f6bcd4621d373cade4e832627b4f6";
+    private final static String name = "restapiuser";
+    private final static int expiresSecond = 172800;
     /**
      * 解析jwt
      * @param jsonWebToken
@@ -76,14 +77,12 @@ public class JwtTokenUtil {
         try {
             // 使用HS256加密算法
             SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-
             long nowMillis = System.currentTimeMillis();
             Date now = new Date(nowMillis);
 
             //生成签名密钥
             byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(base64Secret);
             Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
-
             //userId是重要信息，进行加密下
             String encryId = Base64Util.encode(userId.toString());
 

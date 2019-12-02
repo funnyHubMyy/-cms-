@@ -5,6 +5,7 @@ import com.myy.apps.cms.bean.extend.ArticleExtend;
 import com.myy.apps.cms.service.IArticleService;
 import com.myy.apps.cms.utils.Message;
 import com.myy.apps.cms.utils.MessageUtils;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -19,6 +20,7 @@ import java.util.Map;
 
 @Validated
 @RestController
+@Api(value = "文章管理模块")
 @RequestMapping("/article")
 @CrossOrigin(origins = "http://localhost:9527",
         methods = {RequestMethod.GET,RequestMethod.POST},

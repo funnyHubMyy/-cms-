@@ -7,6 +7,7 @@ import com.myy.apps.cms.service.IBaseUserService;
 import com.myy.apps.cms.utils.Message;
 import com.myy.apps.cms.utils.MessageUtils;
 import com.myy.apps.cms.vm.UserRoleVm;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Validated
 @RestController()
+@Api(value = "用户管理模块")
 @RequestMapping("/baseUser")
 @CrossOrigin(origins = "http://localhost:9527",
         methods = {RequestMethod.GET,RequestMethod.POST},
